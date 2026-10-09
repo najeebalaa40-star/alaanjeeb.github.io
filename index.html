@@ -35,7 +35,7 @@ body {
   overflow-x: hidden;
 }
 
-/* خلفية ديناميكية متحركة تعبر عن الخيوط الملونة */
+/* خلفية ديناميكية متحركة */
 .bg-glow {
   position: fixed;
   top: 0; left: 0; right: 0; bottom: 0;
@@ -61,7 +61,6 @@ body {
   100% { transform: translate(30px, 40px) scale(1.15); }
 }
 
-/* الحاوية الرئيسية للبطاقة الرقمية */
 main {
   position: relative;
   z-index: 1;
@@ -76,7 +75,7 @@ main {
   box-shadow: 0 30px 70px rgba(0, 0, 0, 0.8), inset 0 1px 1px rgba(255,255,255,0.2);
 }
 
-/* تصميم دائرة اللوجو الخيالية مع الخيط والدبوس */
+/* دائرة اللوجو */
 .avatar-container {
   position: relative;
   width: 120px;
@@ -84,7 +83,6 @@ main {
   margin: 0 auto 20px;
 }
 
-/* حلقة الخيط الدوارة بألوان اللوجو */
 .thread-ring {
   position: absolute;
   inset: -6px;
@@ -117,7 +115,6 @@ main {
   border-radius: 50%;
 }
 
-/* أيقونة إبرة زينة أعلى البروفايل */
 .needle-icon {
   position: absolute;
   top: -12px;
@@ -146,25 +143,53 @@ h1 {
   margin-bottom: 14px;
 }
 
-.brand-badge {
+/* نص "اضغط هنا" المتحرك */
+.click-here-text {
+  font-size: 12px;
+  font-weight: 800;
+  color: var(--gold-glow);
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  animation: bounceArrow 1.5s infinite ease-in-out;
+}
+
+@keyframes bounceArrow {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+/* رابط زر دايموند تتش المطور */
+a.brand-badge {
   display: inline-flex;
   align-items: center;
   gap: 8px;
   font-size: 11px;
   font-weight: 800;
-  letter-spacing: 1px;
+  letter-spacing: 0.8px;
   color: #fef08a;
-  background: linear-gradient(135deg, rgba(245,158,11,0.15), rgba(59,130,246,0.15));
-  padding: 6px 18px;
+  text-decoration: none;
+  background: linear-gradient(135deg, rgba(245,158,11,0.2), rgba(59,130,246,0.2));
+  padding: 8px 20px;
   border-radius: 30px;
-  border: 1px solid rgba(245,158,11,0.3);
+  border: 1px solid rgba(245,158,11,0.4);
   margin-bottom: 28px;
   box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+  transition: all 0.3s ease;
 }
 
-.brand-badge i { color: var(--gold); }
+a.brand-badge:hover {
+  transform: scale(1.05);
+  border-color: var(--gold-glow);
+  box-shadow: 0 0 20px rgba(245,158,11,0.5);
+  background: linear-gradient(135deg, rgba(245,158,11,0.35), rgba(59,130,246,0.35));
+}
 
-/* الأزرار العصرية المبتكرة */
+a.brand-badge i { color: var(--gold); }
+
+/* الأزرار العصرية */
 .links-wrapper {
   display: flex;
   flex-direction: column;
@@ -192,7 +217,6 @@ h1 {
   right: 0; top: 0; bottom: 0;
   width: 4px;
   border-radius: 0 20px 20px 0;
-  transition: width 0.3s ease;
 }
 
 .card-link .btn-content {
@@ -210,32 +234,13 @@ h1 {
   justify-content: center;
   font-size: 20px;
   background: rgba(255, 255, 255, 0.05);
-  transition: transform 0.3s ease;
 }
 
-.card-link .btn-text {
-  text-align: right;
-}
+.card-link .btn-text { text-align: right; }
+.card-link .btn-title { font-weight: 700; font-size: 16px; display: block; }
+.card-link .btn-sub { font-size: 11px; color: #94a3b8; font-weight: 500; }
+.card-link .arrow { font-size: 12px; color: #64748b; transition: all 0.3s ease; }
 
-.card-link .btn-title {
-  font-weight: 700;
-  font-size: 16px;
-  display: block;
-}
-
-.card-link .btn-sub {
-  font-size: 11px;
-  color: #94a3b8;
-  font-weight: 500;
-}
-
-.card-link .arrow {
-  font-size: 12px;
-  color: #64748b;
-  transition: all 0.3s ease;
-}
-
-/* ألوان مخصصة وتوهج للروابط */
 .wa::before { background: var(--green); }
 .wa .icon-box { color: #25D366; background: rgba(37,211,102,0.15); }
 .wa:hover { border-color: rgba(37,211,102,0.5); box-shadow: 0 10px 25px rgba(37,211,102,0.2); }
@@ -252,20 +257,10 @@ h1 {
 .tk .icon-box { color: #25F4EE; background: rgba(37,244,238,0.15); }
 .tk:hover { border-color: rgba(37,244,238,0.5); box-shadow: 0 10px 25px rgba(37,244,238,0.2); }
 
-.card-link:hover {
-  transform: translateY(-4px) scale(1.01);
-}
+.card-link:hover { transform: translateY(-4px) scale(1.01); }
+.card-link:hover .arrow { color: #fff; transform: translateX(-4px); }
 
-.card-link:hover .arrow {
-  color: #fff;
-  transform: translateX(-4px);
-}
-
-.card-link:hover .icon-box {
-  transform: scale(1.1) rotate(-5deg);
-}
-
-/* قسم الـ QR Code العصري */
+/* QR Code */
 .qr-section {
   margin-top: 30px;
   padding-top: 24px;
@@ -273,7 +268,6 @@ h1 {
 }
 
 .qr-card {
-  position: relative;
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 24px;
@@ -290,17 +284,11 @@ h1 {
   display: block;
 }
 
-.hint-text {
-  font-size: 12px;
-  color: #94a3b8;
-  margin-top: 12px;
-  line-height: 1.6;
-}
+.hint-text { font-size: 12px; color: #94a3b8; margin-top: 12px; line-height: 1.6; }
 </style>
 </head>
 <body>
 
-<!-- الخلفية المضيئة بلمسات الخيوط الملونة -->
 <div class="bg-glow">
   <div class="bg-blob blob-1"></div>
   <div class="bg-blob blob-2"></div>
@@ -309,7 +297,6 @@ h1 {
 </div>
 
 <main>
-  <!-- بروفايل دائري مع حلقة الخيط الدوارة والإبرة -->
   <div class="avatar-container">
     <div class="thread-ring"></div>
     <div class="needle-icon"><i class="fa-solid fa-needle"></i></div>
@@ -320,13 +307,19 @@ h1 {
 
   <h1>علاء نجيب</h1>
   <p class="subtitle">تواصل معي وتابع جديد أعمالنا</p>
+
+  <!-- عبارة "اضغط هنا" + الزر القابل للضغط -->
+  <div class="click-here-text">
+    <span>اضغط هنا</span>
+    <i class="fa-solid fa-hand-pointer"></i>
+  </div>
   
-  <div class="brand-badge">
+  <a href="https://www.facebook.com/share/1CKaL528DZ/?mibextid=wwXIfr" target="_blank" rel="noopener" class="brand-badge">
     <i class="fa-solid fa-gem"></i>
     <span>DIAMONDTOUCH • Promotion & Advertising</span>
-  </div>
+  </a>
 
-  <!-- قائمة الحسابات والروابط -->
+  <!-- باقي الحسابات -->
   <div class="links-wrapper">
     <a href="https://wa.me/249999963991" target="_blank" rel="noopener" class="card-link wa">
       <div class="btn-content">
@@ -373,7 +366,6 @@ h1 {
     </a>
   </div>
 
-  <!-- كرت رمز الـ QR -->
   <div class="qr-section">
     <div class="qr-card">
       <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://alaanjeeb.github.io" alt="QR Code">
